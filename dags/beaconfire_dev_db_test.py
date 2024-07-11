@@ -6,7 +6,8 @@ from datetime import datetime
 
 from airflow import DAG
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
-from airflow.providers.snowflake.transfers.s3_to_snowflake import S3ToSnowflakeOperator
+#from airflow.providers.snowflake.transfers.copy_into_snowflake import CopyFromExternalStageToSnowflakeOperator
+
 
 
 SNOWFLAKE_CONN_ID = 'snowflake_conn'
@@ -75,7 +76,7 @@ with DAG(
 
     # [START howto_operator_s3_to_snowflake]
 
-    # copy_into_table = S3ToSnowflakeOperator(
+    # copy_into_table = CopyFromExternalStageToSnowflakeOperator(
     #     task_id='copy_into_table',
     #     s3_keys=[S3_FILE_PATH],
     #     table=SNOWFLAKE_SAMPLE_TABLE,

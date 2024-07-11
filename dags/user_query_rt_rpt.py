@@ -26,7 +26,7 @@ with DAG(
 ) as dag:
 
     prestg_last_load_chk = SnowflakeCheckOperator(
-    conn_id=SNOWFLAKE_CONN_ID,
+    #conn_id=SNOWFLAKE_CONN_ID,
     task_id="prestg_last_load_chk",
     sql="select count(*) from prestg_account_query_hist where date(load_utc_ts)>='{{ ds }}'",
     )
