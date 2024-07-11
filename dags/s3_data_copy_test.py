@@ -30,8 +30,7 @@ with DAG(
 
     copy_into_prestg = CopyFromExternalStageToSnowflakeOperator(
         task_id='prestg_product_order_trans',
-        #s3_keys=['product_order_trans_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
-        s3_keys=['s3://carina-af-testing/airflow-testing/product_order_trans_01302024.csv'],
+        files=['product_order_trans_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
         table='prestg_product_order_trans',
         schema=SNOWFLAKE_SCHEMA,
         stage=SNOWFLAKE_STAGE,
