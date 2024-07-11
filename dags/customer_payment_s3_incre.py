@@ -6,7 +6,7 @@ from datetime import datetime
 
 from airflow import DAG
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
-from airflow.providers.snowflake.transfers.s3_to_snowflake import S3ToSnowflakeOperator
+from airflow.providers.snowflake.transfers.copy_into_snowflake import CopyFromExternalStageToSnowflakeOperator
 
 SNOWFLAKE_CONN_ID = 'snowflake_conn'
 SNOWFLAKE_DATABASE = 'beaconfire'
@@ -26,7 +26,7 @@ with DAG(
         catchup=True,
 ) as dag:
 
-    copy_into_prestg = S3ToSnowflakeOperator(
+    copy_into_prestg = CopyFromExternalStageToSnowflakeOperator(
         task_id='prestg_customer_payment',
         s3_keys=['customer_payment_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
         table='customer_payment_prestg',
