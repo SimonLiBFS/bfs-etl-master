@@ -28,7 +28,7 @@ with DAG(
 
     copy_into_prestg = CopyFromExternalStageToSnowflakeOperator(
         task_id='prestg_customer_payment',
-        s3_keys=['customer_payment_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
+        s3_keys=['s3://carina-af-testing/airflow-testing/customer_payment_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
         table='customer_payment_prestg',
         schema=SNOWFLAKE_SCHEMA,
         stage=SNOWFLAKE_STAGE,
