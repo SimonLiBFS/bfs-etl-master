@@ -28,7 +28,7 @@ with DAG(
     catchup=True,
 ) as dag:
 
-    copy_into_prestg = S3ToSnowflakeOperator(
+    copy_into_prestg = CopyFromExternalStageToSnowflakeOperator(
         task_id='prestg_product_order_trans',
         s3_keys=['product_order_trans_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
         table='prestg_product_order_trans',

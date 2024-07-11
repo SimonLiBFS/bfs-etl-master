@@ -18,11 +18,11 @@ SNOWFLAKE_STAGE = 's3_stage_customer_payment'
 # S3_FILE_PATH = 'customer_payment_10182022.csv'
 
 with DAG(
-        "main_s3_copy_customer_payment",
-        start_date=datetime(2024, 07, 11),
+        "group1_s3_copy_customer_payment",
+        start_date=datetime(2022, 10, 22),
         schedule_interval='0 7 * * *',
         default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
-        tags=['main'],
+        tags=['group1'],
         catchup=True,
 ) as dag:
 
